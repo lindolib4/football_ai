@@ -1,0 +1,7 @@
+python-dotenv
+requests
+lightgbm
+scikit-learn
+numpy
+PyQt6
+pytest
