@@ -5,7 +5,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 import math
 
-from football_ai.core.features.builder import FeatureBuilder
+from core.features.builder import FeatureBuilder
 
 
 def test_build_features_contains_required_groups() -> None:

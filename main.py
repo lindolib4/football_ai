@@ -1,4 +1,4 @@
-from football_ai.ui.main import run_ui
+from ui.main import run_ui
 
 
 if __name__ == "__main__":
