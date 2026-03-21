@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -63,3 +64,18 @@ def test_trainer_train_and_predict_proba_shape() -> None:
     assert proba.shape[0] == x_valid.shape[0]
     assert proba.shape[1] == 3
     assert not np.isnan(proba).any()
+
+
+def test_trainer_save_persists_feature_schema(tmp_path: Path) -> None:
+    trainer = ModelTrainer(model_path=str(tmp_path / "model.pkl"))
+    dataset = _build_dataset(510)
+
+    model = trainer.train(dataset)
+    trainer.save(model)
+
+    schema_path = tmp_path / "feature_schema.json"
+    assert schema_path.exists()
+
+    payload = json.loads(schema_path.read_text(encoding="utf-8"))
+    assert isinstance(payload, list)
+    assert payload == trainer.feature_columns

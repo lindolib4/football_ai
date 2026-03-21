@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import logging
 from pathlib import Path
 from typing import Any
@@ -8,7 +7,7 @@ from typing import Any
 import joblib
 import numpy as np
 
-from core.features.builder import FeatureBuilder
+from core.model.feature_schema import FeatureSchema
 
 logger = logging.getLogger(__name__)
 
@@ -23,21 +22,25 @@ class ModelPredictor:
         self.raw_model_path: Path | None = None
         self.calibrated_model_path: Path | None = None
         self.using_calibrated_model: bool = False
+        self.schema = FeatureSchema()
 
     def load(self, path: str | Path = "data/models") -> None:
         path_obj = Path(path)
         model_dir = path_obj if path_obj.is_dir() else path_obj.parent
+
         raw_model_path = model_dir / "model.pkl"
         calibrated_model_path = model_dir / "calibrated_model.pkl"
+        schema_path = model_dir / "feature_schema.json"
 
         if path_obj.is_file():
             raw_model_path = path_obj
             model_dir = raw_model_path.parent
             calibrated_model_path = model_dir / "calibrated_model.pkl"
+            schema_path = model_dir / "feature_schema.json"
 
         if not raw_model_path.exists():
             msg = f"Model file not found: {raw_model_path}"
-            logger.exception(msg)
+            logger.error(msg)
             raise FileNotFoundError(msg)
 
         model_to_load = calibrated_model_path if calibrated_model_path.exists() else raw_model_path
@@ -47,83 +50,59 @@ class ModelPredictor:
         self.raw_model_path = raw_model_path
         self.calibrated_model_path = calibrated_model_path
         self.using_calibrated_model = calibrated_model_path.exists()
+        logger.info("Using %s model: %s", "calibrated" if self.using_calibrated_model else "raw", model_to_load)
 
-        logger.info(
-            "Loaded %s model: %s",
-            "calibrated" if self.using_calibrated_model else "raw",
-            model_to_load,
-        )
-
-        self.feature_columns = self._load_feature_schema(raw_model_path)
+        self.feature_columns = self.schema.load(str(schema_path))
 
     def predict(self, features: dict[str, float]) -> dict[str, float]:
-        if self.model is None:
-            logger.exception("Model is not loaded. Call load(path) before predict().")
-            raise RuntimeError("Model is not loaded. Call load(path) before predict().")
+        if self.model is None or self.feature_columns is None:
+            msg = "Model is not loaded. Call load(path) before predict()."
+            logger.error(msg)
+            raise RuntimeError(msg)
 
-        expected = self.feature_columns or list(FeatureBuilder.build_features({}, {}, {}, {}).keys())
-        self._validate_features(features, expected)
+        self.schema.validate(features, self.feature_columns)
 
-        row = np.array([[float(features[name]) for name in expected]], dtype=float)
-        probs = self.model.predict_proba(row)[0]
-
-        result = {"P1": float(probs[0]), "PX": float(probs[1]), "P2": float(probs[2])}
-        self._validate_probabilities(result)
-        return result
-
-    def _load_feature_schema(self, model_path: Path) -> list[str]:
-        schema_json = model_path.with_name("feature_schema.json")
-        if schema_json.exists():
-            with schema_json.open("r", encoding="utf-8") as fp:
-                payload = json.load(fp)
-
-            if isinstance(payload, dict) and isinstance(payload.get("feature_columns"), list):
-                return [str(name) for name in payload["feature_columns"]]
-            if isinstance(payload, list):
-                return [str(name) for name in payload]
-
-        schema_pkl = model_path.with_name("feature_schema.pkl")
-        if schema_pkl.exists():
-            payload = joblib.load(schema_pkl)
-            if isinstance(payload, list):
-                return [str(name) for name in payload]
-            if isinstance(payload, dict) and isinstance(payload.get("feature_columns"), list):
-                return [str(name) for name in payload["feature_columns"]]
-
-        return list(FeatureBuilder.build_features({}, {}, {}, {}).keys())
-
-    @staticmethod
-    def _validate_features(features: dict[str, float], expected: list[str]) -> None:
-        incoming = set(features.keys())
-        expected_set = set(expected)
-
-        missing = sorted(expected_set - incoming)
-        extra = sorted(incoming - expected_set)
-        if missing or extra:
-            msg = f"Feature mismatch. Missing: {missing}. Extra: {extra}."
-            logger.exception(msg)
+        row = np.array([[float(features[name]) for name in self.feature_columns]], dtype=float)
+        if np.isnan(row).any() or np.isinf(row).any():
+            msg = "Input features contain NaN or infinite values."
+            logger.error(msg)
             raise ValueError(msg)
 
-        for name in expected:
-            value = features[name]
-            value_f = float(value)
-            if np.isnan(value_f):
-                msg = f"Feature '{name}' contains NaN."
-                logger.exception(msg)
-                raise ValueError(msg)
+        probs = self.model.predict_proba(row)
+        if probs.ndim != 2 or probs.shape != (1, 3):
+            msg = f"Invalid predict_proba shape: {probs.shape}. Expected (1, 3)."
+            logger.error(msg)
+            raise ValueError(msg)
+
+        values = probs[0]
+        if np.isnan(values).any():
+            msg = f"Prediction contains NaN values: {values.tolist()}"
+            logger.error(msg)
+            raise ValueError(msg)
+
+        result = {"P1": float(values[0]), "PX": float(values[1]), "P2": float(values[2])}
+        self._validate_probabilities(result)
+        logger.info("Prediction values: %s", result)
+        return result
 
     @staticmethod
     def _validate_probabilities(result: dict[str, float], tolerance: float = 1e-6) -> None:
-        values = list(result.values())
-        if any(value < 0 or value > 1 for value in values):
-            msg = f"Probability value is outside [0, 1]: {result}"
-            logger.exception(msg)
+        values = np.array(list(result.values()), dtype=float)
+
+        if np.isnan(values).any():
+            msg = f"Probability contains NaN: {result}"
+            logger.error(msg)
             raise ValueError(msg)
 
-        total = float(sum(values))
+        if np.any(values < 0.0) or np.any(values > 1.0):
+            msg = f"Probability value is outside [0, 1]: {result}"
+            logger.error(msg)
+            raise ValueError(msg)
+
+        total = float(np.sum(values))
         if abs(total - 1.0) > tolerance:
             msg = f"Probability sum is invalid: {total}."
-            logger.exception(msg)
+            logger.error(msg)
             raise ValueError(msg)
 
 
