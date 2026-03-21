@@ -20,19 +20,41 @@ class ModelPredictor:
         self.model: Any | None = None
         self.feature_columns: list[str] | None = None
         self.model_path: Path | None = None
+        self.raw_model_path: Path | None = None
+        self.calibrated_model_path: Path | None = None
+        self.using_calibrated_model: bool = False
 
-    def load(self, path: str | Path) -> None:
-        model_path = Path(path)
-        if model_path.is_dir():
-            model_path = model_path / "model.pkl"
+    def load(self, path: str | Path = "data/models") -> None:
+        path_obj = Path(path)
+        model_dir = path_obj if path_obj.is_dir() else path_obj.parent
+        raw_model_path = model_dir / "model.pkl"
+        calibrated_model_path = model_dir / "calibrated_model.pkl"
 
-        if not model_path.exists():
-            logger.exception("Model file not found: %s", model_path)
-            raise FileNotFoundError(f"Model file not found: {model_path}")
+        if path_obj.is_file():
+            raw_model_path = path_obj
+            model_dir = raw_model_path.parent
+            calibrated_model_path = model_dir / "calibrated_model.pkl"
 
-        self.model = joblib.load(model_path)
-        self.model_path = model_path
-        self.feature_columns = self._load_feature_schema(model_path)
+        if not raw_model_path.exists():
+            msg = f"Model file not found: {raw_model_path}"
+            logger.exception(msg)
+            raise FileNotFoundError(msg)
+
+        model_to_load = calibrated_model_path if calibrated_model_path.exists() else raw_model_path
+        self.model = joblib.load(model_to_load)
+
+        self.model_path = model_to_load
+        self.raw_model_path = raw_model_path
+        self.calibrated_model_path = calibrated_model_path
+        self.using_calibrated_model = calibrated_model_path.exists()
+
+        logger.info(
+            "Loaded %s model: %s",
+            "calibrated" if self.using_calibrated_model else "raw",
+            model_to_load,
+        )
+
+        self.feature_columns = self._load_feature_schema(raw_model_path)
 
     def predict(self, features: dict[str, float]) -> dict[str, float]:
         if self.model is None:
@@ -93,8 +115,8 @@ class ModelPredictor:
     @staticmethod
     def _validate_probabilities(result: dict[str, float], tolerance: float = 1e-6) -> None:
         values = list(result.values())
-        if any(value < 0 for value in values):
-            msg = f"Negative probability detected: {result}"
+        if any(value < 0 or value > 1 for value in values):
+            msg = f"Probability value is outside [0, 1]: {result}"
             logger.exception(msg)
             raise ValueError(msg)
 
