@@ -15,33 +15,61 @@ class DummyModel:
         return np.tile(np.array([[0.5, 0.3, 0.2]], dtype=float), (rows, 1))
 
 
+class CalibratedDummyModel:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
+        rows = x.shape[0]
+        return np.tile(np.array([[0.4, 0.35, 0.25]], dtype=float), (rows, 1))
+
+
 class BadSumModel:
     def predict_proba(self, x: np.ndarray) -> np.ndarray:
         rows = x.shape[0]
         return np.tile(np.array([[0.9, 0.2, 0.1]], dtype=float), (rows, 1))
 
 
+class BadRangeModel:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
+        rows = x.shape[0]
+        return np.tile(np.array([[1.2, -0.1, -0.1]], dtype=float), (rows, 1))
+
+
 def _feature_dict(names: list[str]) -> dict[str, float]:
     return {name: float(idx + 1) for idx, name in enumerate(names)}
 
 
-def test_predictor_predict_returns_p1_px_p2(tmp_path: pytest.TempPathFactory) -> None:
+def test_predictor_uses_calibrated_model_when_available(tmp_path: pytest.TempPathFactory) -> None:
     model_path = tmp_path / "model.pkl"
+    calibrated_path = tmp_path / "calibrated_model.pkl"
     schema_path = tmp_path / "feature_schema.json"
     feature_names = ["f1", "f2", "f3"]
 
     joblib.dump(DummyModel(), model_path)
+    joblib.dump(CalibratedDummyModel(), calibrated_path)
     schema_path.write_text(json.dumps(feature_names), encoding="utf-8")
 
     predictor = ModelPredictor()
-    predictor.load(model_path)
+    predictor.load(tmp_path)
 
     result = predictor.predict(_feature_dict(feature_names))
 
-    assert set(result.keys()) == {"P1", "PX", "P2"}
-    assert result["P1"] == pytest.approx(0.5)
-    assert result["PX"] == pytest.approx(0.3)
-    assert result["P2"] == pytest.approx(0.2)
+    assert predictor.using_calibrated_model is True
+    assert result == {"P1": pytest.approx(0.4), "PX": pytest.approx(0.35), "P2": pytest.approx(0.25)}
+
+
+def test_predictor_falls_back_to_raw_model(tmp_path: pytest.TempPathFactory) -> None:
+    model_path = tmp_path / "model.pkl"
+    feature_names = ["f1", "f2", "f3"]
+
+    joblib.dump(DummyModel(), model_path)
+    (tmp_path / "feature_schema.json").write_text(json.dumps(feature_names), encoding="utf-8")
+
+    predictor = ModelPredictor()
+    predictor.load(tmp_path)
+
+    result = predictor.predict(_feature_dict(feature_names))
+
+    assert predictor.using_calibrated_model is False
+    assert result == {"P1": pytest.approx(0.5), "PX": pytest.approx(0.3), "P2": pytest.approx(0.2)}
 
 
 def test_predictor_raises_when_model_missing(tmp_path: pytest.TempPathFactory) -> None:
@@ -90,4 +118,18 @@ def test_predictor_raises_when_probability_sum_is_invalid(tmp_path: pytest.TempP
     predictor.load(model_path)
 
     with pytest.raises(ValueError, match="Probability sum is invalid"):
+        predictor.predict(_feature_dict(feature_names))
+
+
+def test_predictor_raises_when_probability_value_out_of_range(tmp_path: pytest.TempPathFactory) -> None:
+    model_path = tmp_path / "model.pkl"
+    feature_names = ["f1", "f2"]
+
+    joblib.dump(BadRangeModel(), model_path)
+    (tmp_path / "feature_schema.json").write_text(json.dumps(feature_names), encoding="utf-8")
+
+    predictor = ModelPredictor()
+    predictor.load(model_path)
+
+    with pytest.raises(ValueError, match=r"outside \[0, 1\]"):
         predictor.predict(_feature_dict(feature_names))
