@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: mandatory-report-policy
+        name: mandatory-report-policy
+        entry: python scripts/validate_reports.py --mode staged
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
