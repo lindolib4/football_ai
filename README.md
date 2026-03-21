@@ -18,9 +18,9 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-pytest football_ai/tests
+pytest tests
 python main.py
 ```
 
 ## Project structure
-See `football_ai/` for modules split by API/core/toto/database/scheduler/ui.
+See top-level directories (`api/`, `core/`, `toto/`, `database/`, `scheduler/`, `ui/`) for module layout.

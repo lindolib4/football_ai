@@ -37,9 +37,9 @@ HIGH_IMPACT_PREFIXES = (
     "core/",
     "toto/",
     "database/",
-    "football_ai/core/",
-    "football_ai/toto/",
-    "football_ai/database/",
+    "core/",
+    "toto/",
+    "database/",
 )
 
 
