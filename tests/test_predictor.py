@@ -6,6 +6,7 @@ import joblib
 import numpy as np
 import pytest
 
+from core.model.feature_schema import FeatureSchema
 from core.model.predictor import ModelPredictor
 
 
@@ -33,8 +34,29 @@ class BadRangeModel:
         return np.tile(np.array([[1.2, -0.1, -0.1]], dtype=float), (rows, 1))
 
 
+class BadNaNModel:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
+        rows = x.shape[0]
+        return np.tile(np.array([[0.5, np.nan, 0.5]], dtype=float), (rows, 1))
+
+
 def _feature_dict(names: list[str]) -> dict[str, float]:
     return {name: float(idx + 1) for idx, name in enumerate(names)}
+
+
+def test_feature_schema_save_load_and_validate(tmp_path: pytest.TempPathFactory) -> None:
+    schema = FeatureSchema()
+    schema_path = tmp_path / "feature_schema.json"
+    feature_names = ["f1", "f2", "f3"]
+
+    schema.save(feature_names, str(schema_path))
+    loaded = schema.load(str(schema_path))
+
+    assert loaded == feature_names
+    schema.validate({"f1": 1.0, "f2": 2.0, "f3": 3.0}, loaded)
+
+    with pytest.raises(ValueError, match="Feature schema mismatch"):
+        schema.validate({"f1": 1.0, "f2": 2.0}, loaded)
 
 
 def test_predictor_uses_calibrated_model_when_available(tmp_path: pytest.TempPathFactory) -> None:
@@ -89,7 +111,7 @@ def test_predictor_raises_on_feature_mismatch(tmp_path: pytest.TempPathFactory) 
     predictor = ModelPredictor()
     predictor.load(model_path)
 
-    with pytest.raises(ValueError, match="Feature mismatch"):
+    with pytest.raises(ValueError, match="Feature schema mismatch"):
         predictor.predict({"f1": 1.0})
 
 
@@ -103,7 +125,7 @@ def test_predictor_raises_on_nan_feature(tmp_path: pytest.TempPathFactory) -> No
     predictor = ModelPredictor()
     predictor.load(model_path)
 
-    with pytest.raises(ValueError, match="contains NaN"):
+    with pytest.raises(ValueError, match="NaN or infinite"):
         predictor.predict({"f1": float("nan"), "f2": 1.0})
 
 
@@ -132,4 +154,18 @@ def test_predictor_raises_when_probability_value_out_of_range(tmp_path: pytest.T
     predictor.load(model_path)
 
     with pytest.raises(ValueError, match=r"outside \[0, 1\]"):
+        predictor.predict(_feature_dict(feature_names))
+
+
+def test_predictor_raises_when_probability_contains_nan(tmp_path: pytest.TempPathFactory) -> None:
+    model_path = tmp_path / "model.pkl"
+    feature_names = ["f1", "f2"]
+
+    joblib.dump(BadNaNModel(), model_path)
+    (tmp_path / "feature_schema.json").write_text(json.dumps(feature_names), encoding="utf-8")
+
+    predictor = ModelPredictor()
+    predictor.load(model_path)
+
+    with pytest.raises(ValueError, match="contains NaN"):
         predictor.predict(_feature_dict(feature_names))

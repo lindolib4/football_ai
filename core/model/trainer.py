@@ -11,6 +11,7 @@ from lightgbm import LGBMClassifier
 from sklearn.metrics import accuracy_score, log_loss
 
 from core.features.builder import FeatureBuilder
+from core.model.feature_schema import FeatureSchema
 
 logger = logging.getLogger(__name__)
 
@@ -162,6 +163,9 @@ class ModelTrainer:
         destination.parent.mkdir(parents=True, exist_ok=True)
         joblib.dump(model, destination)
         logger.info("Model saved to %s", destination)
+
+        schema_path = destination.parent / "feature_schema.json"
+        FeatureSchema().save(self.feature_columns, str(schema_path))
 
     @staticmethod
     def _contains_postmatch_signals(row: dict[str, Any]) -> bool:
