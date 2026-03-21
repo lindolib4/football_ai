@@ -1,0 +1,1 @@
+"""FootAI package."""
