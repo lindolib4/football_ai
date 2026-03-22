@@ -34,7 +34,8 @@ def test_get_draw_normalizes_matches_pool_probs_and_saves_raw_payload(tmp_path: 
                         "outcome": "X",
                         "quotes": {"pool_win_1": 40, "pool_draw": 35, "pool_win_2": 25},
                     },
-                ]
+                ],
+                "payouts": {"13": "500.4", "14": 5000, "15": "100000", "bad": "x"},
             }
         }
     )
@@ -56,6 +57,7 @@ def test_get_draw_normalizes_matches_pool_probs_and_saves_raw_payload(tmp_path: 
                 "pool_probs": {"P1": 0.4, "PX": 0.35, "P2": 0.25},
             },
         ],
+        "payouts": {13: 500, 14: 5000, 15: 100000},
     }
     assert fake.calls == [("https://example.test/api/v1/community/drawing-info/12345", None)]
 
