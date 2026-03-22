@@ -68,6 +68,21 @@ class TotoAPI:
             "pool_probs": self._extract_pool_probs(payload),
         }
 
+    def _normalize_payouts(self, payload: dict[str, Any]) -> dict[int, int] | None:
+        payouts = payload.get("payouts")
+        if not isinstance(payouts, dict):
+            return None
+
+        normalized: dict[int, int] = {}
+        for key, value in payouts.items():
+            try:
+                hit_count = int(key)
+                normalized[hit_count] = int(float(value))
+            except (TypeError, ValueError):
+                continue
+
+        return normalized or None
+
     def _save_raw_draw(self, draw_id: int, payload: dict[str, Any]) -> None:
         path = self.data_dir / f"{draw_id}.json"
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -81,6 +96,11 @@ class TotoAPI:
             "draw_id": int(draw_id),
             "matches": [self._normalize_match(match) for match in matches_payload if isinstance(match, dict)],
         }
+
+        payouts = self._normalize_payouts(payload)
+        if payouts is not None:
+            draw["payouts"] = payouts
+
         logger.info("toto_draw draw_id=%s matches=%s", draw["draw_id"], len(draw["matches"]))
         return draw
 

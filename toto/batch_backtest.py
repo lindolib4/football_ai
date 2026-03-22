@@ -9,7 +9,7 @@ from toto.optimizer import TotoOptimizer
 
 
 class TotoBatchBacktest:
-    """Run Toto optimization + backtest for multiple draw IDs."""
+    """Run Toto optimization + backtest for multiple draws from API pages."""
 
     def __init__(
         self,
@@ -25,7 +25,8 @@ class TotoBatchBacktest:
         self.mode = mode
         self.output_path = Path(output_path)
 
-    def run(self, draw_ids: list) -> dict:
+    def run(self, draw_name: str, pages: int) -> dict:
+        draw_ids = self._collect_draw_ids(draw_name=draw_name, pages=pages)
         if not draw_ids:
             summary = {
                 "draws": 0,
@@ -39,6 +40,7 @@ class TotoBatchBacktest:
             return summary
 
         total_profit = 0.0
+        total_stake = 0.0
         max_hits = 0
         avg_hits_acc = 0.0
         total_draws = 0
@@ -61,6 +63,7 @@ class TotoBatchBacktest:
             draw_profit = float(report["ROI"]) * stake - stake
 
             total_profit += draw_profit
+            total_stake += stake
             max_hits = max(max_hits, int(report["max_hits"]))
             avg_hits_acc += float(report["avg_hits"])
             total_draws += 1
@@ -69,7 +72,7 @@ class TotoBatchBacktest:
             for hits in (13, 14, 15):
                 distribution[hits] += int(draw_distribution.get(hits, 0))
 
-        roi = float(total_profit / total_draws) if total_draws else 0.0
+        roi = float(total_profit / total_stake) if total_stake else 0.0
         avg_hits = float(avg_hits_acc / total_draws) if total_draws else 0.0
 
         summary = {
@@ -82,6 +85,22 @@ class TotoBatchBacktest:
         }
         self._save(summary)
         return summary
+
+    def _collect_draw_ids(self, draw_name: str, pages: int) -> list[int]:
+        unique_ids: list[int] = []
+        seen: set[int] = set()
+
+        safe_pages = max(0, int(pages))
+        for page in range(1, safe_pages + 1):
+            draws = self.api.get_draws(name=draw_name, page=page)
+            for draw in draws:
+                draw_id = int(draw.get("id", 0))
+                if draw_id <= 0 or draw_id in seen:
+                    continue
+                seen.add(draw_id)
+                unique_ids.append(draw_id)
+
+        return unique_ids
 
     def _to_optimizer_match(self, match: dict) -> dict:
         probs = match.get("pool_probs") or {}
