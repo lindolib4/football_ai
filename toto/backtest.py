@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import logging
 from collections import Counter
+
+logger = logging.getLogger("toto")
 
 
 class TotoBacktest:
@@ -28,7 +31,7 @@ class TotoBacktest:
             return result in {"1", "2"}
         raise ValueError(f"Unsupported prediction: {prediction}")
 
-    def evaluate(self, coupons: list, results: list) -> dict:
+    def evaluate(self, coupons: list, results: list, payouts: dict[int, int] | None = None) -> dict:
         if not coupons:
             return {
                 "max_hits": 0,
@@ -36,6 +39,12 @@ class TotoBacktest:
                 "distribution": {},
                 "ROI": 0.0,
             }
+
+        payout_table = payouts or self.PAYOUTS
+        if payouts:
+            logger.info("Using real payouts for backtest: %s", payouts)
+        else:
+            logger.info("Using fallback payouts for backtest: %s", self.PAYOUTS)
 
         hits_per_coupon: list[int] = []
         total_win = 0.0
@@ -45,7 +54,7 @@ class TotoBacktest:
                 1 for prediction, result in zip(coupon, results) if self._is_hit(prediction, result)
             )
             hits_per_coupon.append(count_correct)
-            total_win += float(self.PAYOUTS.get(count_correct, 0))
+            total_win += float(payout_table.get(count_correct, 0))
 
         distribution = dict(sorted(Counter(hits_per_coupon).items(), reverse=True))
         max_hits = max(hits_per_coupon)
