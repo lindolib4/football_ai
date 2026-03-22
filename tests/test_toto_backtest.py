@@ -30,6 +30,21 @@ def test_evaluate_supports_combined_picks() -> None:
     assert report["ROI"] == 0.0
 
 
+def test_evaluate_uses_real_payouts_when_provided() -> None:
+    coupons = [
+        ["1"] * 15,
+        ["1"] * 14 + ["X"],
+        ["1"] * 13 + ["X", "X"],
+    ]
+    results = ["1"] * 15
+    payouts = {15: 150000, 14: 7000, 13: 900}
+
+    report = TotoBacktest().evaluate(coupons=coupons, results=results, payouts=payouts)
+
+    assert report["distribution"] == {15: 1, 14: 1, 13: 1}
+    assert report["ROI"] == (150000 + 7000 + 900) / 3
+
+
 def test_evaluate_with_empty_coupons() -> None:
     report = TotoBacktest().evaluate(coupons=[], results=["1"] * 15)
 
