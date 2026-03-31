@@ -53,7 +53,7 @@ def test_build_features_contains_required_groups() -> None:
         "volatility",
     }
     assert expected_keys.issubset(features.keys())
-    assert all(isinstance(v, float) for v in features.values())
+    assert all(isinstance(v, float) for k, v in features.items() if not k.startswith("__"))
     assert math.isclose(
         features["implied_prob_1"] + features["implied_prob_x"] + features["implied_prob_2"],
         1.0,
@@ -75,7 +75,7 @@ def test_build_features_sanitizes_invalid_values() -> None:
     assert features["ppg_diff"] == 0.0
     assert features["draw_pct"] == 0.0
     assert features["split_advantage"] == 0.0
-    assert all(not math.isnan(v) for v in features.values())
+    assert all(not math.isnan(v) for k, v in features.items() if not k.startswith("__"))
 
 
 def test_helpers_behave_as_expected() -> None:

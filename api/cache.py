@@ -26,14 +26,15 @@ class JsonFileCache:
         data = {"saved_at": int(time.time()), "payload": payload}
         self._path(key).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
 
-    def get(self, key: str, allow_stale: bool = False) -> tuple[Any | None, bool]:
+    def get(self, key: str, allow_stale: bool = False, ttl_sec: int | None = None) -> tuple[Any | None, bool]:
         path = self._path(key)
         if not path.exists():
             return None, False
 
         data = json.loads(path.read_text(encoding="utf-8"))
         age_sec = int(time.time()) - int(data.get("saved_at", 0))
-        is_fresh = age_sec <= self.ttl_sec
+        effective_ttl = self.ttl_sec if ttl_sec is None else int(ttl_sec)
+        is_fresh = age_sec <= effective_ttl
         if not is_fresh and not allow_stale:
             return None, False
         return data.get("payload"), is_fresh

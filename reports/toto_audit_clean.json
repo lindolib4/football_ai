@@ -1,0 +1,310 @@
+﻿c:/FootAI/.venv/Scripts/python.exe : C:\FootAI\.venv\lib\site-packages\sklearn\
+ LGBMClassifier was fitted with feature names
+??????:1 ????:17
++ ... :/FootAI ; (c:/FootAI/.venv/Scripts/python.exe scripts/audit_toto_qua ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\FootAI\.venv...h feature names 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+: X does not have valid feature names, but LGBMClassifier was fitted with featu
+re names
+saved_report=C:\FootAI\reports\toto_quality_audit_real.json
+draw_count=5
+scenario_runs=60

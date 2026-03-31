@@ -222,3 +222,48 @@ CREATE TABLE IF NOT EXISTS results_audit (
     error_type TEXT,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS model_prediction_history (
+    history_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    predicted_at TEXT NOT NULL,
+    model_version TEXT,
+    model_fingerprint TEXT,
+    model_mtime TEXT,
+    match_id INTEGER NOT NULL,
+    match_date_iso TEXT,
+    home_team TEXT,
+    away_team TEXT,
+    season_id INTEGER,
+    league_id INTEGER,
+    p1 REAL NOT NULL,
+    px REAL NOT NULL,
+    p2 REAL NOT NULL,
+    final_predicted_outcome TEXT NOT NULL,
+    confidence REAL,
+    calibrated_confidence REAL,
+    feature_context_level TEXT,
+    signal_strength TEXT,
+    market_disagreement_flag INTEGER DEFAULT 0,
+    weak_favorite_flag INTEGER DEFAULT 0,
+    draw_risk_flag INTEGER DEFAULT 0,
+    stats_override_signal_flag INTEGER DEFAULT 0,
+    no_odds_mode INTEGER DEFAULT 0,
+    prediction_source TEXT,
+    prediction_status TEXT,
+    actual_outcome TEXT,
+    is_correct INTEGER,
+    resolved_at TEXT,
+    dedupe_key TEXT UNIQUE
+);
+
+CREATE INDEX IF NOT EXISTS idx_model_prediction_history_match_id
+    ON model_prediction_history(match_id);
+
+CREATE INDEX IF NOT EXISTS idx_model_prediction_history_predicted_at
+    ON model_prediction_history(predicted_at);
+
+CREATE INDEX IF NOT EXISTS idx_model_prediction_history_unresolved
+    ON model_prediction_history(actual_outcome, predicted_at);
+
+CREATE INDEX IF NOT EXISTS idx_model_prediction_history_league_resolved
+    ON model_prediction_history(league_id, actual_outcome);

@@ -17,14 +17,55 @@ class FootyStatsClient:
         self.base_url = settings.footystats_base_url.rstrip("/")
         self.api_key = settings.footystats_api_key
 
-    def _request(self, endpoint: str, params: dict[str, Any] | None = None) -> tuple[dict[str, Any] | None, bool]:
+    @staticmethod
+    def _safe_params(params: dict[str, Any]) -> dict[str, Any]:
+        return {key: ("***" if key.lower() == "key" else value) for key, value in params.items()}
+
+    @staticmethod
+    def _response_error_name(response: Any) -> str:
+        error_type = getattr(response, "error_type", None)
+        if error_type is None:
+            return "unknown"
+        return str(getattr(error_type, "value", error_type)).lower()
+
+    @staticmethod
+    def _response_terminal(response: Any) -> bool:
+        return bool(getattr(response, "terminal", False))
+
+    @staticmethod
+    def _can_use_stale_cache(error_name: str, terminal: bool) -> bool:
+        if terminal:
+            return False
+        return error_name in {"rate_limited", "server_error", "network_error"}
+
+    def _request(
+        self,
+        endpoint: str,
+        params: dict[str, Any] | None = None,
+        force_refresh: bool = False,
+    ) -> tuple[dict[str, Any] | None, bool]:
         req_params = {"key": self.api_key, **(params or {})}
+        safe_params = self._safe_params(req_params)
+
+        if not self.api_key:
+            logger.error(
+                "endpoint=%s params=%s error=missing_api_key terminal=true",
+                endpoint,
+                safe_params,
+            )
+            return None, False
+
         cache_key = self.cache.make_key(endpoint=endpoint, params=req_params)
 
-        cached_payload, is_fresh = self.cache.get(cache_key)
-        if cached_payload is not None and is_fresh:
-            logger.info("endpoint=%s params=%s status=cache cache=hit", endpoint, params)
-            return cached_payload, True
+        ttl_override_sec: int | None = None
+        if endpoint == "/todays-matches":
+            ttl_override_sec = settings.live_cache_ttl_sec
+
+        if not force_refresh:
+            cached_payload, is_fresh = self.cache.get(cache_key, ttl_sec=ttl_override_sec)
+            if cached_payload is not None and is_fresh:
+                logger.info("endpoint=%s params=%s status=cache cache=hit freshness=fresh", endpoint, safe_params)
+                return cached_payload, True
 
         url = f"{self.base_url}{endpoint}"
         response = self.http.get(url=url, params=req_params)
@@ -32,10 +73,44 @@ class FootyStatsClient:
             self.cache.set(cache_key, response.payload)
             return response.payload, False
 
-        stale_payload, _ = self.cache.get(cache_key, allow_stale=True)
+        error_name = self._response_error_name(response)
+        terminal = self._response_terminal(response)
+        status_code = getattr(response, "status_code", None)
+
+        logger.warning(
+            "endpoint=%s params=%s status=%s error=%s terminal=%s cache=miss",
+            endpoint,
+            safe_params,
+            status_code,
+            error_name,
+            terminal,
+        )
+
+        if not self._can_use_stale_cache(error_name=error_name, terminal=terminal):
+            if error_name == "auth_failed":
+                logger.error(
+                    "endpoint=%s params=%s fallback=disabled reason=auth_failed",
+                    endpoint,
+                    safe_params,
+                )
+            return None, False
+
+        stale_payload, _ = self.cache.get(cache_key, allow_stale=True, ttl_sec=ttl_override_sec)
         if stale_payload is not None:
-            logger.warning("endpoint=%s params=%s fallback=stale_cache", endpoint, params)
+            logger.warning(
+                "endpoint=%s params=%s fallback=stale_cache reason=%s degraded_mode=true",
+                endpoint,
+                safe_params,
+                error_name,
+            )
             return stale_payload, True
+
+        logger.warning(
+            "endpoint=%s params=%s fallback=unavailable reason=%s degraded_mode=false",
+            endpoint,
+            safe_params,
+            error_name,
+        )
 
         return None, False
 
@@ -60,19 +135,35 @@ class FootyStatsClient:
         data, _ = self._request("/league-list", params=params)
         return self._extract_rows(data)
 
-    def get_todays_matches(self, date: str | None = None, timezone: str | None = None, page: int = 1) -> list[dict[str, Any]]:
+    def get_todays_matches(
+        self,
+        date: str | None = None,
+        timezone: str | None = None,
+        page: int = 1,
+        force_refresh: bool = False,
+    ) -> list[dict[str, Any]]:
         params: dict[str, Any] = {"page": page}
         if date:
             params["date"] = date
         params["timezone"] = timezone or settings.app_timezone
-        data, _ = self._request("/todays-matches", params=params)
+        data, _ = self._request("/todays-matches", params=params, force_refresh=force_refresh)
         return self._extract_rows(data)
 
-    def get_all_todays_matches(self, date: str | None = None, timezone: str | None = None) -> list[dict[str, Any]]:
+    def get_all_todays_matches(
+        self,
+        date: str | None = None,
+        timezone: str | None = None,
+        force_refresh: bool = False,
+    ) -> list[dict[str, Any]]:
         page = 1
         rows: list[dict[str, Any]] = []
         while True:
-            chunk = self.get_todays_matches(date=date, timezone=timezone, page=page)
+            chunk = self.get_todays_matches(
+                date=date,
+                timezone=timezone,
+                page=page,
+                force_refresh=force_refresh,
+            )
             if not chunk:
                 break
             rows.extend(chunk)

@@ -1,0 +1,25 @@
+{
+  "draw_id": 11663,
+  "matches": 15,
+  "strategy_adjusted_matches_count": 11,
+  "insurance_target_matches_count": 4,
+  "insurance_changed_matches_count": 4,
+  "toxic_single_count": 4,
+  "draw_heavy_decision_count": 2,
+  "strong_single_count": 4,
+  "decision_dist": {
+    "single_1": 0,
+    "single_X": 0,
+    "single_2": 4,
+    "double_1X": 0,
+    "double_X2": 2,
+    "double_12": 9,
+    "other": 0
+  },
+  "target_match_indexes": [
+    0,
+    3,
+    5,
+    8
+  ]
+}

@@ -1,0 +1,480 @@
+{
+  "before": {
+    "evaluated": 1077,
+    "metrics": {
+      "accuracy": 0.7372,
+      "log_loss": 0.6618,
+      "brier": 0.1243,
+      "avg_confidence": 0.7279,
+      "avg_calibrated_confidence": 0.7265
+    },
+    "class": {
+      "actual": {
+        "1": 533,
+        "X": 178,
+        "2": 366
+      },
+      "predicted": {
+        "1": 625,
+        "X": 60,
+        "2": 392
+      },
+      "hit_rate": {
+        "1": 0.8893,
+        "X": 0.1348,
+        "2": 0.8087
+      },
+      "confusion": {
+        "1": {
+          "1": 474,
+          "X": 21,
+          "2": 38
+        },
+        "X": {
+          "1": 96,
+          "X": 24,
+          "2": 58
+        },
+        "2": {
+          "1": 55,
+          "X": 15,
+          "2": 296
+        }
+      }
+    },
+    "signal": {
+      "strong_signal": {
+        "count": 857,
+        "accuracy": 0.7911
+      },
+      "medium_signal": {
+        "count": 186,
+        "accuracy": 0.5538
+      },
+      "weak_signal": {
+        "count": 34,
+        "accuracy": 0.3824
+      }
+    },
+    "market_disagreement": {
+      "agreement_count": 750,
+      "agreement_accuracy": 0.7507,
+      "disagreement_count": 327,
+      "disagreement_accuracy": 0.7064,
+      "suspicious_count": 0,
+      "stats_override_count": 325,
+      "draw_risk_flag_count": 70,
+      "weak_favorite_flag_count": 349
+    },
+    "px_buckets": {
+      "0.05-0.10": {
+        "count": 287,
+        "actual_draw_rate": 0.0627,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.0868,
+        "calibration_gap_actual_minus_px": -0.024
+      },
+      "0.10-0.15": {
+        "count": 340,
+        "actual_draw_rate": 0.1294,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.1221,
+        "calibration_gap_actual_minus_px": 0.0073
+      },
+      "0.15-0.20": {
+        "count": 167,
+        "actual_draw_rate": 0.2036,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.1714,
+        "calibration_gap_actual_minus_px": 0.0321
+      },
+      "0.20-0.25": {
+        "count": 102,
+        "actual_draw_rate": 0.2647,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.2243,
+        "calibration_gap_actual_minus_px": 0.0404
+      },
+      "0.25-0.30": {
+        "count": 55,
+        "actual_draw_rate": 0.2545,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.2723,
+        "calibration_gap_actual_minus_px": -0.0178
+      },
+      "0.30-0.35": {
+        "count": 41,
+        "actual_draw_rate": 0.2683,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.3226,
+        "calibration_gap_actual_minus_px": -0.0543
+      },
+      "0.35-0.40": {
+        "count": 17,
+        "actual_draw_rate": 0.3529,
+        "predicted_draw_top1_rate": 0.1176,
+        "mean_px": 0.3687,
+        "calibration_gap_actual_minus_px": -0.0158
+      },
+      "0.40-0.45": {
+        "count": 17,
+        "actual_draw_rate": 0.2353,
+        "predicted_draw_top1_rate": 0.4706,
+        "mean_px": 0.4322,
+        "calibration_gap_actual_minus_px": -0.197
+      },
+      "0.45-0.50": {
+        "count": 20,
+        "actual_draw_rate": 0.55,
+        "predicted_draw_top1_rate": 0.95,
+        "mean_px": 0.4756,
+        "calibration_gap_actual_minus_px": 0.0744
+      },
+      "0.50-0.55": {
+        "count": 8,
+        "actual_draw_rate": 0.125,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.5279,
+        "calibration_gap_actual_minus_px": -0.4029
+      },
+      "0.55-0.60": {
+        "count": 10,
+        "actual_draw_rate": 0.2,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.5804,
+        "calibration_gap_actual_minus_px": -0.3804
+      },
+      "0.60-0.65": {
+        "count": 4,
+        "actual_draw_rate": 0.25,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.6297,
+        "calibration_gap_actual_minus_px": -0.3797
+      },
+      "0.65-0.70": {
+        "count": 3,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.6622,
+        "calibration_gap_actual_minus_px": 0.3378
+      },
+      "0.70-0.75": {
+        "count": 2,
+        "actual_draw_rate": 0.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.7194,
+        "calibration_gap_actual_minus_px": -0.7194
+      },
+      "0.75-0.80": {
+        "count": 2,
+        "actual_draw_rate": 0.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.7874,
+        "calibration_gap_actual_minus_px": -0.7874
+      },
+      "0.80-0.85": {
+        "count": 1,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.8198,
+        "calibration_gap_actual_minus_px": 0.1802
+      },
+      "0.85-0.90": {
+        "count": 1,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.8512,
+        "calibration_gap_actual_minus_px": 0.1488
+      }
+    },
+    "segments": {
+      "close_matches": {
+        "count": 47,
+        "actual_draw_rate": 0.3191,
+        "predicted_draw_top1_rate": 0.383,
+        "mean_px": 0.3744,
+        "calibration_gap_actual_minus_px": -0.0553,
+        "x_recall_within_segment": 0.5333
+      },
+      "weak_favorite": {
+        "count": 60,
+        "actual_draw_rate": 0.2833,
+        "predicted_draw_top1_rate": 0.3667,
+        "mean_px": 0.3595,
+        "calibration_gap_actual_minus_px": -0.0761,
+        "x_recall_within_segment": 0.5294
+      },
+      "high_entropy": {
+        "count": 1022,
+        "actual_draw_rate": 0.1712,
+        "predicted_draw_top1_rate": 0.0568,
+        "mean_px": 0.1782,
+        "calibration_gap_actual_minus_px": -0.007,
+        "x_recall_within_segment": 0.1314
+      },
+      "high_draw_pct": {
+        "count": 38,
+        "actual_draw_rate": 0.2632,
+        "predicted_draw_top1_rate": 0.2895,
+        "mean_px": 0.323,
+        "calibration_gap_actual_minus_px": -0.0599,
+        "x_recall_within_segment": 0.3
+      },
+      "low_gap": {
+        "count": 581,
+        "actual_draw_rate": 0.1893,
+        "predicted_draw_top1_rate": 0.0602,
+        "mean_px": 0.1912,
+        "calibration_gap_actual_minus_px": -0.0019,
+        "x_recall_within_segment": 0.1455
+      },
+      "balanced_stats": {
+        "count": 660,
+        "actual_draw_rate": 0.1955,
+        "predicted_draw_top1_rate": 0.0788,
+        "mean_px": 0.2048,
+        "calibration_gap_actual_minus_px": -0.0093,
+        "x_recall_within_segment": 0.155
+      }
+    }
+  },
+  "after": {
+    "evaluated": 1077,
+    "metrics": {
+      "accuracy": 0.7382,
+      "log_loss": 0.6615,
+      "brier": 0.1243,
+      "avg_confidence": 0.7279,
+      "avg_calibrated_confidence": 0.7264
+    },
+    "class": {
+      "actual": {
+        "1": 533,
+        "X": 178,
+        "2": 366
+      },
+      "predicted": {
+        "1": 624,
+        "X": 61,
+        "2": 392
+      },
+      "hit_rate": {
+        "1": 0.8893,
+        "X": 0.1404,
+        "2": 0.8087
+      },
+      "confusion": {
+        "1": {
+          "1": 474,
+          "X": 21,
+          "2": 38
+        },
+        "X": {
+          "1": 95,
+          "X": 25,
+          "2": 58
+        },
+        "2": {
+          "1": 55,
+          "X": 15,
+          "2": 296
+        }
+      }
+    },
+    "signal": {
+      "strong_signal": {
+        "count": 857,
+        "accuracy": 0.7911
+      },
+      "medium_signal": {
+        "count": 186,
+        "accuracy": 0.5538
+      },
+      "weak_signal": {
+        "count": 34,
+        "accuracy": 0.4118
+      }
+    },
+    "market_disagreement": {
+      "agreement_count": 749,
+      "agreement_accuracy": 0.7517,
+      "disagreement_count": 328,
+      "disagreement_accuracy": 0.7073,
+      "suspicious_count": 0,
+      "stats_override_count": 326,
+      "draw_risk_flag_count": 71,
+      "weak_favorite_flag_count": 349
+    },
+    "px_buckets": {
+      "0.05-0.10": {
+        "count": 287,
+        "actual_draw_rate": 0.0627,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.0868,
+        "calibration_gap_actual_minus_px": -0.024
+      },
+      "0.10-0.15": {
+        "count": 340,
+        "actual_draw_rate": 0.1294,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.1221,
+        "calibration_gap_actual_minus_px": 0.0073
+      },
+      "0.15-0.20": {
+        "count": 167,
+        "actual_draw_rate": 0.2036,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.1714,
+        "calibration_gap_actual_minus_px": 0.0321
+      },
+      "0.20-0.25": {
+        "count": 102,
+        "actual_draw_rate": 0.2647,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.2243,
+        "calibration_gap_actual_minus_px": 0.0404
+      },
+      "0.25-0.30": {
+        "count": 54,
+        "actual_draw_rate": 0.2407,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.2722,
+        "calibration_gap_actual_minus_px": -0.0315
+      },
+      "0.30-0.35": {
+        "count": 41,
+        "actual_draw_rate": 0.2683,
+        "predicted_draw_top1_rate": 0.0,
+        "mean_px": 0.3226,
+        "calibration_gap_actual_minus_px": -0.0543
+      },
+      "0.35-0.40": {
+        "count": 18,
+        "actual_draw_rate": 0.3889,
+        "predicted_draw_top1_rate": 0.1667,
+        "mean_px": 0.3685,
+        "calibration_gap_actual_minus_px": 0.0204
+      },
+      "0.40-0.45": {
+        "count": 17,
+        "actual_draw_rate": 0.2353,
+        "predicted_draw_top1_rate": 0.4706,
+        "mean_px": 0.4322,
+        "calibration_gap_actual_minus_px": -0.197
+      },
+      "0.45-0.50": {
+        "count": 20,
+        "actual_draw_rate": 0.55,
+        "predicted_draw_top1_rate": 0.95,
+        "mean_px": 0.4756,
+        "calibration_gap_actual_minus_px": 0.0744
+      },
+      "0.50-0.55": {
+        "count": 8,
+        "actual_draw_rate": 0.125,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.5279,
+        "calibration_gap_actual_minus_px": -0.4029
+      },
+      "0.55-0.60": {
+        "count": 10,
+        "actual_draw_rate": 0.2,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.5804,
+        "calibration_gap_actual_minus_px": -0.3804
+      },
+      "0.60-0.65": {
+        "count": 4,
+        "actual_draw_rate": 0.25,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.6297,
+        "calibration_gap_actual_minus_px": -0.3797
+      },
+      "0.65-0.70": {
+        "count": 3,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.6622,
+        "calibration_gap_actual_minus_px": 0.3378
+      },
+      "0.70-0.75": {
+        "count": 2,
+        "actual_draw_rate": 0.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.7194,
+        "calibration_gap_actual_minus_px": -0.7194
+      },
+      "0.75-0.80": {
+        "count": 2,
+        "actual_draw_rate": 0.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.7874,
+        "calibration_gap_actual_minus_px": -0.7874
+      },
+      "0.80-0.85": {
+        "count": 1,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.8198,
+        "calibration_gap_actual_minus_px": 0.1802
+      },
+      "0.85-0.90": {
+        "count": 1,
+        "actual_draw_rate": 1.0,
+        "predicted_draw_top1_rate": 1.0,
+        "mean_px": 0.8512,
+        "calibration_gap_actual_minus_px": 0.1488
+      }
+    },
+    "segments": {
+      "close_matches": {
+        "count": 47,
+        "actual_draw_rate": 0.3191,
+        "predicted_draw_top1_rate": 0.4043,
+        "mean_px": 0.3762,
+        "calibration_gap_actual_minus_px": -0.0571,
+        "x_recall_within_segment": 0.6
+      },
+      "weak_favorite": {
+        "count": 60,
+        "actual_draw_rate": 0.2833,
+        "predicted_draw_top1_rate": 0.3833,
+        "mean_px": 0.3609,
+        "calibration_gap_actual_minus_px": -0.0776,
+        "x_recall_within_segment": 0.5882
+      },
+      "high_entropy": {
+        "count": 1022,
+        "actual_draw_rate": 0.1712,
+        "predicted_draw_top1_rate": 0.0577,
+        "mean_px": 0.1783,
+        "calibration_gap_actual_minus_px": -0.0071,
+        "x_recall_within_segment": 0.1371
+      },
+      "high_draw_pct": {
+        "count": 38,
+        "actual_draw_rate": 0.2632,
+        "predicted_draw_top1_rate": 0.2895,
+        "mean_px": 0.323,
+        "calibration_gap_actual_minus_px": -0.0599,
+        "x_recall_within_segment": 0.3
+      },
+      "low_gap": {
+        "count": 581,
+        "actual_draw_rate": 0.1893,
+        "predicted_draw_top1_rate": 0.062,
+        "mean_px": 0.1914,
+        "calibration_gap_actual_minus_px": -0.0021,
+        "x_recall_within_segment": 0.1545
+      },
+      "balanced_stats": {
+        "count": 660,
+        "actual_draw_rate": 0.1955,
+        "predicted_draw_top1_rate": 0.0803,
+        "mean_px": 0.2049,
+        "calibration_gap_actual_minus_px": -0.0095,
+        "x_recall_within_segment": 0.1628
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "draw_id": 11663,
+  "matches": 15,
+  "strategy_adjusted_matches_count": 11,
+  "insurance_target_matches_count": 3,
+  "insurance_changed_matches_count": 3,
+  "toxic_single_count": 4,
+  "draw_heavy_decision_count": 2,
+  "strong_single_count": 4,
+  "decision_dist": {
+    "single_1": 0,
+    "single_X": 0,
+    "single_2": 4,
+    "double_1X": 0,
+    "double_X2": 2,
+    "double_12": 9,
+    "other": 0
+  },
+  "target_match_indexes": [
+    0,
+    3,
+    5
+  ],
+  "match_type_distribution": {
+    "Form-vs-market conflict": 14,
+    "Strong favorite": 1
+  },
+  "risk_level_distribution": {
+    "low-risk": 12,
+    "medium-risk": 3
+  },
+  "resolution_type_distribution": {
+    "single": 12,
+    "double": 3
+  },
+  "avg_draw_risk_score": 0.33285229602229205,
+  "avg_upset_risk_score": 0.27961610933798564,
+  "avg_weak_favorite_score": 0.19393957460409392,
+  "avg_trap_match_score": 0.33190981768192845,
+  "avg_single_confidence_score": 0.6645968118680206,
+  "avg_insurance_priority_score": 0.3984640477654032
+}

@@ -10,6 +10,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from core.features.builder import FeatureBuilder
 from core.model.trainer import ModelTrainer
+from scheduler.auto_train import AutoTrainer
 
 
 def _build_dataset(size: int = 600) -> list[dict[str, float | int | str]]:
@@ -79,3 +80,49 @@ def test_trainer_save_persists_feature_schema(tmp_path: Path) -> None:
     payload = json.loads(schema_path.read_text(encoding="utf-8"))
     assert isinstance(payload, list)
     assert payload == trainer.feature_columns
+
+
+def test_post_train_backtest_report_has_core_blocks() -> None:
+    dataset = _build_dataset(180)
+    trainer = ModelTrainer()
+    cleaned, _ = trainer.clean_data_with_report(dataset)
+
+    auto = AutoTrainer()
+
+    def _fake_predict(features: dict[str, float]) -> dict[str, float]:
+        if float(features.get("ppg_diff", 0.0)) >= 0.0:
+            return {"P1": 0.62, "PX": 0.21, "P2": 0.17}
+        return {"P1": 0.19, "PX": 0.23, "P2": 0.58}
+
+    auto.predict = _fake_predict  # type: ignore[method-assign]
+
+    report = auto._run_post_train_backtest(  # type: ignore[attr-defined]
+        raw_rows=cleaned,
+        feature_columns=list(trainer.feature_columns),
+        train_ratio=0.8,
+    )
+
+    assert report["backtest_run"] is True
+    assert report["evaluated_matches"] > 0
+    assert isinstance(report["metrics"]["accuracy"], float)
+    assert "class_metrics" in report
+    assert "context_metrics" in report
+    assert "signal_quality" in report
+    assert "market_vs_stats" in report
+    assert "summary_lines" in report and report["summary_lines"]
+
+
+def test_post_train_backtest_not_run_for_tiny_dataset() -> None:
+    dataset = _build_dataset(60)
+    trainer = ModelTrainer()
+    cleaned, _ = trainer.clean_data_with_report(dataset)
+
+    auto = AutoTrainer()
+    report = auto._run_post_train_backtest(  # type: ignore[attr-defined]
+        raw_rows=cleaned,
+        feature_columns=list(trainer.feature_columns),
+        train_ratio=0.8,
+    )
+
+    assert report["backtest_run"] is False
+    assert report["reason"]

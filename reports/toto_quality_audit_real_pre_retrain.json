@@ -1,0 +1,1158 @@
+{
+  "draw_ids": [
+    11663
+  ],
+  "draw_count": 1,
+  "scenario_runs": 12,
+  "aggregated": {
+    "mode=16|insurance=0.0|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 16.0,
+      "avg_insurance_coupon_count": 0.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 2.8,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 2.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 120.0,
+      "avg_insurance_target_matches_count": 0.0,
+      "avg_insurance_changed_matches_count": 0.0,
+      "avg_insurance_changed_coupon_lines_count": 0.0,
+      "avg_meaningful_changed_lines": 0.0,
+      "avg_meaningful_ratio": 0.0,
+      "consistency_failures": 0
+    },
+    "mode=16|insurance=0.7|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 8.0,
+      "avg_insurance_coupon_count": 8.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 3.191666666666667,
+      "avg_min_hamming_distance": 1.0,
+      "avg_median_hamming_distance": 3.0,
+      "avg_pairs_diff_1": 1.0,
+      "avg_pairs_diff_2_plus": 119.0,
+      "avg_insurance_target_matches_count": 5.0,
+      "avg_insurance_changed_matches_count": 5.0,
+      "avg_insurance_changed_coupon_lines_count": 8.0,
+      "avg_meaningful_changed_lines": 8.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=16|insurance=0.9|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 6.0,
+      "avg_insurance_coupon_count": 10.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 4.9,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 5.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 120.0,
+      "avg_insurance_target_matches_count": 9.0,
+      "avg_insurance_changed_matches_count": 9.0,
+      "avg_insurance_changed_coupon_lines_count": 10.0,
+      "avg_meaningful_changed_lines": 10.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=32|insurance=0.0|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 32.0,
+      "avg_insurance_coupon_count": 0.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 3.2943548387096775,
+      "avg_min_hamming_distance": 1.0,
+      "avg_median_hamming_distance": 3.0,
+      "avg_pairs_diff_1": 36.0,
+      "avg_pairs_diff_2_plus": 460.0,
+      "avg_insurance_target_matches_count": 0.0,
+      "avg_insurance_changed_matches_count": 0.0,
+      "avg_insurance_changed_coupon_lines_count": 0.0,
+      "avg_meaningful_changed_lines": 0.0,
+      "avg_meaningful_ratio": 0.0,
+      "consistency_failures": 0
+    },
+    "mode=32|insurance=0.7|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 16.0,
+      "avg_insurance_coupon_count": 16.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 3.8024193548387095,
+      "avg_min_hamming_distance": 1.0,
+      "avg_median_hamming_distance": 4.0,
+      "avg_pairs_diff_1": 1.0,
+      "avg_pairs_diff_2_plus": 495.0,
+      "avg_insurance_target_matches_count": 7.0,
+      "avg_insurance_changed_matches_count": 7.0,
+      "avg_insurance_changed_coupon_lines_count": 16.0,
+      "avg_meaningful_changed_lines": 16.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=32|insurance=0.9|history=off": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 13.0,
+      "avg_insurance_coupon_count": 19.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 5.227822580645161,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 5.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 496.0,
+      "avg_insurance_target_matches_count": 12.0,
+      "avg_insurance_changed_matches_count": 12.0,
+      "avg_insurance_changed_coupon_lines_count": 19.0,
+      "avg_meaningful_changed_lines": 19.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=16|insurance=0.0|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 16.0,
+      "avg_insurance_coupon_count": 0.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 2.75,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 2.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 120.0,
+      "avg_insurance_target_matches_count": 0.0,
+      "avg_insurance_changed_matches_count": 0.0,
+      "avg_insurance_changed_coupon_lines_count": 0.0,
+      "avg_meaningful_changed_lines": 0.0,
+      "avg_meaningful_ratio": 0.0,
+      "consistency_failures": 0
+    },
+    "mode=16|insurance=0.7|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 8.0,
+      "avg_insurance_coupon_count": 8.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 3.5083333333333333,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 4.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 120.0,
+      "avg_insurance_target_matches_count": 6.0,
+      "avg_insurance_changed_matches_count": 6.0,
+      "avg_insurance_changed_coupon_lines_count": 8.0,
+      "avg_meaningful_changed_lines": 8.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=16|insurance=0.9|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 16.0,
+      "avg_base_coupon_count": 6.0,
+      "avg_insurance_coupon_count": 10.0,
+      "avg_unique_coupon_count": 16.0,
+      "avg_average_hamming_distance": 4.833333333333333,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 5.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 120.0,
+      "avg_insurance_target_matches_count": 9.0,
+      "avg_insurance_changed_matches_count": 9.0,
+      "avg_insurance_changed_coupon_lines_count": 10.0,
+      "avg_meaningful_changed_lines": 10.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    },
+    "mode=32|insurance=0.0|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 32.0,
+      "avg_insurance_coupon_count": 0.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 3.2963709677419355,
+      "avg_min_hamming_distance": 1.0,
+      "avg_median_hamming_distance": 3.0,
+      "avg_pairs_diff_1": 34.0,
+      "avg_pairs_diff_2_plus": 462.0,
+      "avg_insurance_target_matches_count": 0.0,
+      "avg_insurance_changed_matches_count": 0.0,
+      "avg_insurance_changed_coupon_lines_count": 0.0,
+      "avg_meaningful_changed_lines": 0.0,
+      "avg_meaningful_ratio": 0.0,
+      "consistency_failures": 0
+    },
+    "mode=32|insurance=0.7|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 16.0,
+      "avg_insurance_coupon_count": 16.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 3.719758064516129,
+      "avg_min_hamming_distance": 1.0,
+      "avg_median_hamming_distance": 4.0,
+      "avg_pairs_diff_1": 5.0,
+      "avg_pairs_diff_2_plus": 491.0,
+      "avg_insurance_target_matches_count": 7.0,
+      "avg_insurance_changed_matches_count": 7.0,
+      "avg_insurance_changed_coupon_lines_count": 16.0,
+      "avg_meaningful_changed_lines": 14.0,
+      "avg_meaningful_ratio": 0.875,
+      "consistency_failures": 1
+    },
+    "mode=32|insurance=0.9|history=on": {
+      "runs": 1,
+      "avg_total_coupon_count": 32.0,
+      "avg_base_coupon_count": 13.0,
+      "avg_insurance_coupon_count": 19.0,
+      "avg_unique_coupon_count": 32.0,
+      "avg_average_hamming_distance": 5.201612903225806,
+      "avg_min_hamming_distance": 2.0,
+      "avg_median_hamming_distance": 5.0,
+      "avg_pairs_diff_1": 0.0,
+      "avg_pairs_diff_2_plus": 496.0,
+      "avg_insurance_target_matches_count": 12.0,
+      "avg_insurance_changed_matches_count": 12.0,
+      "avg_insurance_changed_coupon_lines_count": 19.0,
+      "avg_meaningful_changed_lines": 19.0,
+      "avg_meaningful_ratio": 1.0,
+      "consistency_failures": 1
+    }
+  },
+  "history_delta": {
+    "draw=11663|mode=16|insurance=0.0": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 0,
+      "final_coupon_set_symdiff": 24,
+      "probability_source_off": "model_plus_pool_public",
+      "probability_source_on": "model_plus_event_history",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    },
+    "draw=11663|mode=16|insurance=0.7": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 1,
+      "final_coupon_set_symdiff": 24,
+      "probability_source_off": "model_plus_history_and_insurance",
+      "probability_source_on": "model_plus_history_and_insurance",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    },
+    "draw=11663|mode=16|insurance=0.9": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 0,
+      "final_coupon_set_symdiff": 28,
+      "probability_source_off": "model_plus_history_and_insurance",
+      "probability_source_on": "model_plus_history_and_insurance",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    },
+    "draw=11663|mode=32|insurance=0.0": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 0,
+      "final_coupon_set_symdiff": 48,
+      "probability_source_off": "model_plus_pool_public",
+      "probability_source_on": "model_plus_event_history",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    },
+    "draw=11663|mode=32|insurance=0.7": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 0,
+      "final_coupon_set_symdiff": 34,
+      "probability_source_off": "model_plus_history_and_insurance",
+      "probability_source_on": "model_plus_history_and_insurance",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    },
+    "draw=11663|mode=32|insurance=0.9": {
+      "history_influenced_matches_off": 13,
+      "history_influenced_matches_on": 13,
+      "strategy_adjusted_matches_off": 13,
+      "strategy_adjusted_matches_on": 13,
+      "target_matches_symdiff": 2,
+      "final_coupon_set_symdiff": 40,
+      "probability_source_off": "model_plus_history_and_insurance",
+      "probability_source_on": "model_plus_history_and_insurance",
+      "history_state_label_off": "pool_probs_used_as_public_signal",
+      "history_state_label_on": "full_history_ready"
+    }
+  },
+  "rows": [
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "16",
+      "insurance_strength": 0.0,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 2.8,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 2.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 120,
+        "base_coupon_count": 16,
+        "insurance_coupon_count": 0
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 0,
+        "insurance_changed_matches_count": 0,
+        "insurance_changed_coupon_lines_count": 0,
+        "insurance_visible_changed_lines": 0,
+        "meaningful_changed_lines": 0,
+        "meaningful_ratio": 0.0,
+        "change_semantics": {},
+        "insurance_reason_codes": {
+          "preserved_base_decision": 15,
+          "no_extra_cover": 15
+        }
+      },
+      "consistency": {
+        "ok": true,
+        "mismatches": [],
+        "summary_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_pool_public",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 0,
+        "target_match_indexes": []
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "16",
+      "insurance_strength": 0.7,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 3.191666666666667,
+        "min_hamming_distance": 1,
+        "median_hamming_distance": 3.0,
+        "pairs_diff_1": 1,
+        "pairs_diff_2_plus": 119,
+        "base_coupon_count": 8,
+        "insurance_coupon_count": 8
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 5,
+        "insurance_changed_matches_count": 5,
+        "insurance_changed_coupon_lines_count": 8,
+        "insurance_visible_changed_lines": 8,
+        "meaningful_changed_lines": 8,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 19,
+          "cosmetic_shift": 3
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 5,
+          "draw_cover": 2,
+          "favorite_fail_cover": 5,
+          "upset_cover": 5,
+          "preserved_base_decision": 10,
+          "no_extra_cover": 10,
+          "adjacent_safety": 3
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=8 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 8,
+          "insurance_changed_coupon_lines_count": 8,
+          "insurance_changed_matches_count": 5,
+          "insured_matches_count": 5,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 8,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 5,
+          "insured_matches_count": 5,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 5,
+        "target_match_indexes": [
+          0,
+          3,
+          6,
+          8,
+          11
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "16",
+      "insurance_strength": 0.9,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 4.9,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 5.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 120,
+        "base_coupon_count": 6,
+        "insurance_coupon_count": 10
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 9,
+        "insurance_changed_matches_count": 9,
+        "insurance_changed_coupon_lines_count": 10,
+        "insurance_visible_changed_lines": 10,
+        "meaningful_changed_lines": 10,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 34,
+          "cosmetic_shift": 3,
+          "stronger_opposite": 7
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 9,
+          "draw_cover": 2,
+          "favorite_fail_cover": 9,
+          "upset_cover": 6,
+          "preserved_base_decision": 6,
+          "no_extra_cover": 6,
+          "adjacent_safety": 7
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=10 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 10,
+          "insurance_changed_coupon_lines_count": 10,
+          "insurance_changed_matches_count": 9,
+          "insured_matches_count": 9,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 10,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 9,
+          "insured_matches_count": 9,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 9,
+        "target_match_indexes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          14
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "32",
+      "insurance_strength": 0.0,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 3.2943548387096775,
+        "min_hamming_distance": 1,
+        "median_hamming_distance": 3.0,
+        "pairs_diff_1": 36,
+        "pairs_diff_2_plus": 460,
+        "base_coupon_count": 32,
+        "insurance_coupon_count": 0
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 0,
+        "insurance_changed_matches_count": 0,
+        "insurance_changed_coupon_lines_count": 0,
+        "insurance_visible_changed_lines": 0,
+        "meaningful_changed_lines": 0,
+        "meaningful_ratio": 0.0,
+        "change_semantics": {},
+        "insurance_reason_codes": {
+          "preserved_base_decision": 15,
+          "no_extra_cover": 15
+        }
+      },
+      "consistency": {
+        "ok": true,
+        "mismatches": [],
+        "summary_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_pool_public",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 0,
+        "target_match_indexes": []
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "32",
+      "insurance_strength": 0.7,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 3.8024193548387095,
+        "min_hamming_distance": 1,
+        "median_hamming_distance": 4.0,
+        "pairs_diff_1": 1,
+        "pairs_diff_2_plus": 495,
+        "base_coupon_count": 16,
+        "insurance_coupon_count": 16
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 7,
+        "insurance_changed_matches_count": 7,
+        "insurance_changed_coupon_lines_count": 16,
+        "insurance_visible_changed_lines": 16,
+        "meaningful_changed_lines": 16,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 45,
+          "cosmetic_shift": 2
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 7,
+          "draw_cover": 2,
+          "favorite_fail_cover": 7,
+          "upset_cover": 6,
+          "preserved_base_decision": 8,
+          "no_extra_cover": 8,
+          "adjacent_safety": 5
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=16 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 16,
+          "insurance_changed_coupon_lines_count": 16,
+          "insurance_changed_matches_count": 7,
+          "insured_matches_count": 7,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 16,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 7,
+          "insured_matches_count": 7,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 7,
+        "target_match_indexes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          8,
+          11
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": false,
+      "mode": "32",
+      "insurance_strength": 0.9,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 5.227822580645161,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 5.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 496,
+        "base_coupon_count": 13,
+        "insurance_coupon_count": 19
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 12,
+        "insurance_changed_matches_count": 12,
+        "insurance_changed_coupon_lines_count": 19,
+        "insurance_visible_changed_lines": 19,
+        "meaningful_changed_lines": 19,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 54,
+          "stronger_opposite": 16,
+          "cosmetic_shift": 5
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 12,
+          "draw_cover": 2,
+          "favorite_fail_cover": 12,
+          "upset_cover": 6,
+          "preserved_base_decision": 3,
+          "no_extra_cover": 3,
+          "adjacent_safety": 10
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=19 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 19,
+          "insurance_changed_coupon_lines_count": 19,
+          "insurance_changed_matches_count": 12,
+          "insured_matches_count": 12,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 19,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 12,
+          "insured_matches_count": 12,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "pool_probs_used_as_public_signal",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 12,
+        "target_match_indexes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "16",
+      "insurance_strength": 0.0,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 2.75,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 2.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 120,
+        "base_coupon_count": 16,
+        "insurance_coupon_count": 0
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 0,
+        "insurance_changed_matches_count": 0,
+        "insurance_changed_coupon_lines_count": 0,
+        "insurance_visible_changed_lines": 0,
+        "meaningful_changed_lines": 0,
+        "meaningful_ratio": 0.0,
+        "change_semantics": {},
+        "insurance_reason_codes": {
+          "preserved_base_decision": 15,
+          "no_extra_cover": 15
+        }
+      },
+      "consistency": {
+        "ok": true,
+        "mismatches": [],
+        "summary_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_event_history",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 0,
+        "target_match_indexes": []
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "16",
+      "insurance_strength": 0.7,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 3.5083333333333333,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 4.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 120,
+        "base_coupon_count": 8,
+        "insurance_coupon_count": 8
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 6,
+        "insurance_changed_matches_count": 6,
+        "insurance_changed_coupon_lines_count": 8,
+        "insurance_visible_changed_lines": 8,
+        "meaningful_changed_lines": 8,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 14,
+          "stronger_opposite": 2,
+          "cosmetic_shift": 4
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 6,
+          "draw_cover": 2,
+          "favorite_fail_cover": 6,
+          "upset_cover": 6,
+          "preserved_base_decision": 9,
+          "no_extra_cover": 9,
+          "adjacent_safety": 4
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=8 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 8,
+          "insurance_changed_coupon_lines_count": 8,
+          "insurance_changed_matches_count": 6,
+          "insured_matches_count": 6,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 8,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 6,
+          "insured_matches_count": 6,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 6,
+        "target_match_indexes": [
+          0,
+          3,
+          5,
+          6,
+          8,
+          11
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "16",
+      "insurance_strength": 0.9,
+      "diversity": {
+        "total_coupon_count": 16,
+        "unique_coupon_count": 16,
+        "average_hamming_distance": 4.833333333333333,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 5.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 120,
+        "base_coupon_count": 6,
+        "insurance_coupon_count": 10
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 9,
+        "insurance_changed_matches_count": 9,
+        "insurance_changed_coupon_lines_count": 10,
+        "insurance_visible_changed_lines": 10,
+        "meaningful_changed_lines": 10,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 26,
+          "stronger_opposite": 9,
+          "cosmetic_shift": 4
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 9,
+          "draw_cover": 2,
+          "favorite_fail_cover": 9,
+          "upset_cover": 9,
+          "preserved_base_decision": 6,
+          "no_extra_cover": 6,
+          "adjacent_safety": 7
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=10 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 10,
+          "insurance_changed_coupon_lines_count": 10,
+          "insurance_changed_matches_count": 9,
+          "insured_matches_count": 9,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 10,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 9,
+          "insured_matches_count": 9,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 9,
+        "target_match_indexes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          8,
+          11,
+          12,
+          14
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "32",
+      "insurance_strength": 0.0,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 3.2963709677419355,
+        "min_hamming_distance": 1,
+        "median_hamming_distance": 3.0,
+        "pairs_diff_1": 34,
+        "pairs_diff_2_plus": 462,
+        "base_coupon_count": 32,
+        "insurance_coupon_count": 0
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 0,
+        "insurance_changed_matches_count": 0,
+        "insurance_changed_coupon_lines_count": 0,
+        "insurance_visible_changed_lines": 0,
+        "meaningful_changed_lines": 0,
+        "meaningful_ratio": 0.0,
+        "change_semantics": {},
+        "insurance_reason_codes": {
+          "preserved_base_decision": 15,
+          "no_extra_cover": 15
+        }
+      },
+      "consistency": {
+        "ok": true,
+        "mismatches": [],
+        "summary_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 0,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 0,
+          "insured_matches_count": 0,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_event_history",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 0,
+        "target_match_indexes": []
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "32",
+      "insurance_strength": 0.7,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 3.719758064516129,
+        "min_hamming_distance": 1,
+        "median_hamming_distance": 4.0,
+        "pairs_diff_1": 5,
+        "pairs_diff_2_plus": 491,
+        "base_coupon_count": 16,
+        "insurance_coupon_count": 16
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 7,
+        "insurance_changed_matches_count": 7,
+        "insurance_changed_coupon_lines_count": 16,
+        "insurance_visible_changed_lines": 16,
+        "meaningful_changed_lines": 14,
+        "meaningful_ratio": 0.875,
+        "change_semantics": {
+          "adjacent_alternative": 29,
+          "stronger_opposite": 3,
+          "cosmetic_shift": 7
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 7,
+          "draw_cover": 2,
+          "favorite_fail_cover": 7,
+          "upset_cover": 7,
+          "preserved_base_decision": 8,
+          "no_extra_cover": 8,
+          "adjacent_safety": 5
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=16 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 16,
+          "insurance_changed_coupon_lines_count": 16,
+          "insurance_changed_matches_count": 7,
+          "insured_matches_count": 7,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 16,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 7,
+          "insured_matches_count": 7,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 7,
+        "target_match_indexes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          8,
+          11
+        ]
+      }
+    },
+    {
+      "draw_id": 11663,
+      "history_on": true,
+      "mode": "32",
+      "insurance_strength": 0.9,
+      "diversity": {
+        "total_coupon_count": 32,
+        "unique_coupon_count": 32,
+        "average_hamming_distance": 5.201612903225806,
+        "min_hamming_distance": 2,
+        "median_hamming_distance": 5.0,
+        "pairs_diff_1": 0,
+        "pairs_diff_2_plus": 496,
+        "base_coupon_count": 13,
+        "insurance_coupon_count": 19
+      },
+      "insurance_quality": {
+        "insurance_target_matches_count": 12,
+        "insurance_changed_matches_count": 12,
+        "insurance_changed_coupon_lines_count": 19,
+        "insurance_visible_changed_lines": 19,
+        "meaningful_changed_lines": 19,
+        "meaningful_ratio": 1.0,
+        "change_semantics": {
+          "adjacent_alternative": 37,
+          "stronger_opposite": 24,
+          "cosmetic_shift": 9
+        },
+        "insurance_reason_codes": {
+          "diversification_cover": 12,
+          "draw_cover": 2,
+          "favorite_fail_cover": 12,
+          "upset_cover": 12,
+          "adjacent_safety": 10,
+          "preserved_base_decision": 3,
+          "no_extra_cover": 3
+        }
+      },
+      "consistency": {
+        "ok": false,
+        "mismatches": [
+          "insurance_changed_coupon_lines_count summary=19 actual=0"
+        ],
+        "summary_values": {
+          "insurance_coupon_count": 19,
+          "insurance_changed_coupon_lines_count": 19,
+          "insurance_changed_matches_count": 12,
+          "insured_matches_count": 12,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        },
+        "actual_values": {
+          "insurance_coupon_count": 19,
+          "insurance_changed_coupon_lines_count": 0,
+          "insurance_changed_matches_count": 12,
+          "insured_matches_count": 12,
+          "history_influenced_matches_count": 13,
+          "strategy_adjusted_matches_count": 13
+        }
+      },
+      "summary_slice": {
+        "probability_source": "model_plus_history_and_insurance",
+        "history_state_label": "full_history_ready",
+        "history_influenced_matches_count": 13,
+        "strategy_adjusted_matches_count": 13,
+        "insurance_target_matches_count": 12,
+        "target_match_indexes": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    }
+  ]
+}

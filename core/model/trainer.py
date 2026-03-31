@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 import logging
 import math
 from pathlib import Path
@@ -19,55 +20,145 @@ logger = logging.getLogger(__name__)
 class ModelTrainer:
     """Train and evaluate a single prematch LightGBM multiclass model."""
 
+    BASELINE_FEATURE_CANDIDATES = (
+        "odds_ft_1",
+        "odds_ft_x",
+        "odds_ft_2",
+        "implied_prob_1",
+        "implied_prob_x",
+        "implied_prob_2",
+        "ppg_diff",
+        "home_home_ppg",
+        "away_away_ppg",
+        "split_advantage",
+        "draw_pct",
+        "home_advantage",
+        "avg_goals",
+        "entropy",
+        "gap",
+        "volatility",
+    )
+
     def __init__(self, model_path: str = "data/models/model.pkl") -> None:
         self.model_path = Path(model_path)
         self.model_path.parent.mkdir(parents=True, exist_ok=True)
-        self.feature_columns = list(FeatureBuilder.build_features({}, {}, {}, {}).keys())
+        template = FeatureBuilder.build_features({}, {}, {}, {})
+        self.all_feature_columns = self._extract_numeric_feature_columns(template)
+        self.source_metadata_columns = [name for name in template.keys() if name.startswith("__source_")]
+        self.baseline_feature_columns = [
+            name for name in self.BASELINE_FEATURE_CANDIDATES if name in self.all_feature_columns
+        ]
+        self.feature_columns = list(self.all_feature_columns)
+        self.last_clean_report: dict[str, Any] = {}
 
     def clean_data(self, dataset: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        """Drop rows with invalid target/feature values (None/NaN/inf)."""
+        """Drop rows with invalid target/feature values and auto-fallback to baseline-safe features."""
+        cleaned, report = self.clean_data_with_report(dataset)
+        self.last_clean_report = report
+        return cleaned
+
+    def clean_data_with_report(self, dataset: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        """Return cleaned rows and a diagnostic report for the train pipeline."""
+        cleaned_extended, report_extended = self._clean_data_for_columns(dataset, self.all_feature_columns)
+        report_extended["baseline_candidate_rows_after_clean"] = 0
+        report_extended["fallback_from_extended"] = False
+
+        if cleaned_extended:
+            self.feature_columns = list(self.all_feature_columns)
+            report_extended["training_feature_mode"] = "extended"
+            report_extended["active_feature_count"] = len(self.feature_columns)
+            return cleaned_extended, report_extended
+
+        cleaned_baseline, report_baseline = self._clean_data_for_columns(dataset, self.baseline_feature_columns)
+        report_baseline["fallback_from_extended"] = bool(cleaned_baseline)
+        report_baseline["baseline_candidate_rows_after_clean"] = len(cleaned_baseline)
+
+        if cleaned_baseline:
+            self.feature_columns = list(self.baseline_feature_columns)
+            report_baseline["training_feature_mode"] = "baseline"
+            report_baseline["active_feature_count"] = len(self.feature_columns)
+            report_baseline["extended_candidate_rows_after_clean"] = 0
+            logger.warning(
+                "Extended feature set produced no clean rows; falling back to baseline-safe feature set. baseline_rows=%s",
+                len(cleaned_baseline),
+            )
+            return cleaned_baseline, report_baseline
+
+        self.feature_columns = list(self.all_feature_columns)
+        report_extended["training_feature_mode"] = "extended"
+        report_extended["active_feature_count"] = len(self.feature_columns)
+        report_extended["baseline_candidate_rows_after_clean"] = len(cleaned_baseline)
+        return [], report_extended
+
+    def _clean_data_for_columns(
+        self,
+        dataset: list[dict[str, Any]],
+        feature_columns: list[str],
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         cleaned: list[dict[str, Any]] = []
+        missing_counter: Counter[str] = Counter()
+        sample_filtered_rows: list[dict[str, Any]] = []
+        dropped_due_to_invalid_target = 0
+        dropped_due_to_missing_required = 0
+        dropped_due_to_non_numeric = 0
+        dropped_due_to_nan = 0
+        dropped_due_to_postmatch = 0
 
         for row in dataset:
             if "target" not in row:
+                dropped_due_to_invalid_target += 1
+                self._append_filter_sample(sample_filtered_rows, row, "missing_target")
                 continue
 
             target = row.get("target")
             if target is None:
+                dropped_due_to_invalid_target += 1
+                self._append_filter_sample(sample_filtered_rows, row, "target_is_none")
                 continue
             try:
                 target_int = int(target)
             except (TypeError, ValueError):
+                dropped_due_to_invalid_target += 1
+                self._append_filter_sample(sample_filtered_rows, row, f"invalid_target:{target}")
                 continue
             if target_int not in (0, 1, 2):
+                dropped_due_to_invalid_target += 1
+                self._append_filter_sample(sample_filtered_rows, row, f"target_out_of_range:{target_int}")
+                continue
+
+            if self._contains_postmatch_signals(row):
+                dropped_due_to_postmatch += 1
+                self._append_filter_sample(sample_filtered_rows, row, "postmatch_signal_detected")
                 continue
 
             cleaned_row: dict[str, Any] = {"target": target_int}
-            invalid = False
+            invalid_reason: str | None = None
 
-            for feature_name in self.feature_columns:
+            for feature_name in feature_columns:
                 value = row.get(feature_name)
                 if value is None:
-                    invalid = True
+                    dropped_due_to_missing_required += 1
+                    missing_counter[feature_name] += 1
+                    invalid_reason = f"missing_required:{feature_name}"
                     break
 
                 try:
                     value_f = float(value)
                 except (TypeError, ValueError):
-                    invalid = True
+                    dropped_due_to_non_numeric += 1
+                    invalid_reason = f"non_numeric:{feature_name}"
                     break
 
                 if math.isnan(value_f) or math.isinf(value_f):
-                    invalid = True
+                    dropped_due_to_nan += 1
+                    invalid_reason = f"nan_or_inf:{feature_name}"
                     break
 
                 cleaned_row[feature_name] = value_f
 
-            if invalid:
+            if invalid_reason is not None:
+                self._append_filter_sample(sample_filtered_rows, row, invalid_reason)
                 continue
-
-            if self._contains_postmatch_signals(row):
-                raise ValueError("Dataset contains post-match fields. Only prematch features are allowed.")
 
             if "match_date" in row:
                 cleaned_row["match_date"] = row["match_date"]
@@ -76,7 +167,22 @@ class ModelTrainer:
 
             cleaned.append(cleaned_row)
 
-        return cleaned
+        report: dict[str, Any] = {
+            "training_rows_before_clean": len(dataset),
+            "training_rows_after_clean": len(cleaned),
+            "dropped_due_to_invalid_target": dropped_due_to_invalid_target,
+            "dropped_due_to_missing_required": dropped_due_to_missing_required,
+            "dropped_due_to_non_numeric": dropped_due_to_non_numeric,
+            "dropped_due_to_nan": dropped_due_to_nan,
+            "dropped_due_to_postmatch": dropped_due_to_postmatch,
+            "required_features_missing_top": [
+                {"feature": feature, "count": count}
+                for feature, count in missing_counter.most_common(10)
+            ],
+            "sample_filtered_rows_reasons": sample_filtered_rows,
+            "candidate_feature_count": len(feature_columns),
+        }
+        return cleaned, report
 
     def prepare_dataset(self, dataset: list[dict[str, Any]]) -> tuple[np.ndarray, np.ndarray]:
         """Validate and convert list[dict] dataset into model matrices."""
@@ -151,8 +257,8 @@ class ModelTrainer:
             "accuracy": float(accuracy_score(y_valid, predictions)),
             "log_loss": float(log_loss(y_valid, probabilities, labels=[0, 1, 2])),
             "prediction_distribution": {
-                "1": int(np.sum(predictions == 0)),
-                "X": int(np.sum(predictions == 1)),
+                "1": int(np.sum(predictions == 1)),
+                "X": int(np.sum(predictions == 0)),
                 "2": int(np.sum(predictions == 2)),
             },
         }
@@ -166,6 +272,22 @@ class ModelTrainer:
 
         schema_path = destination.parent / "feature_schema.json"
         FeatureSchema().save(self.feature_columns, str(schema_path))
+
+    @staticmethod
+    def _extract_numeric_feature_columns(template: dict[str, Any]) -> list[str]:
+        return [name for name in template.keys() if not name.startswith("__source_")]
+
+    @staticmethod
+    def _append_filter_sample(samples: list[dict[str, Any]], row: dict[str, Any], reason: str) -> None:
+        if len(samples) >= 10:
+            return
+        samples.append(
+            {
+                "reason": reason,
+                "match_date": row.get("match_date") or row.get("timestamp"),
+                "target": row.get("target"),
+            }
+        )
 
     @staticmethod
     def _contains_postmatch_signals(row: dict[str, Any]) -> bool:
